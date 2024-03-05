@@ -1,0 +1,15 @@
+defaults
+  mode http
+  timeout client 15s
+  timeout connect 10s
+  timeout server 15s
+  timeout http-request 10s
+
+frontend nzejoe-frontend
+    bind *:80
+    default_backend nzejoe-backend
+
+backend nzejoe-backend
+    balance roundrobin
+    server 469608-web-01 100.25.150.166:80 check
+    server 469608-web-02 100.25.166.154:80 check
